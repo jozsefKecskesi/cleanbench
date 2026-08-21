@@ -1,0 +1,5 @@
+from .annotation import ANNOTATION_CHECKS
+from .integrity import INTEGRITY_CHECKS
+from .physical import PHYSICAL_CHECKS
+
+ALL_CHECKS = (*PHYSICAL_CHECKS, *ANNOTATION_CHECKS, *INTEGRITY_CHECKS)
