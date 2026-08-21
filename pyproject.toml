@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cleanbench"
+version = "0.1.0"
+description = "Quality scorer for LeRobot-format robot datasets: physical anomalies + annotation checks."
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.10"
+authors = [{name = "CleanBench"}]
+keywords = ["lerobot", "robotics", "dataset-quality", "huggingface"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Apache Software License",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "huggingface_hub>=0.24.0",
+  "numpy>=1.26",
+  "polars>=1.6",
+  "pyarrow>=15",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+cleanbench = "cleanbench.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/jozsefKecskesi/cleanbench"
+Issues = "https://github.com/jozsefKecskesi/cleanbench/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
