@@ -19,3 +19,4 @@ were derived from `observation.state` and can false-positive.
 | `pusht.json` | `lerobot/pusht` |
 | `aloha_sim_insertion_human.json` | `lerobot/aloha_sim_insertion_human` |
 | `aloha_sim_transfer_cube_human.json` | `lerobot/aloha_sim_transfer_cube_human` |
+| `columbia_cairlab_pusht_real.json` | `lerobot/columbia_cairlab_pusht_real` |
