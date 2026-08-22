@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jozsefKecskesi/cleanbench/src/cleanbench/schema/report.schema.json",
+  "title": "CleanBench report v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "format",
+    "sample",
+    "scores",
+    "band",
+    "checks",
+    "flagged_episodes",
+    "warnings",
+    "error"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "minLength": 1 },
+    "dataset_id": { "type": "string", "minLength": 1 },
+    "revision": { "type": ["string", "null"] },
+    "scored_at": { "type": "string", "minLength": 1 },
+    "format": {
+      "type": "object",
+      "required": ["detected", "valid_lerobot"],
+      "properties": {
+        "detected": { "type": "string" },
+        "valid_lerobot": { "type": "boolean" },
+        "robot_type": { "type": ["string", "null"] },
+        "fps": { "type": ["number", "null"] },
+        "total_episodes": { "type": ["integer", "null"] },
+        "total_frames": { "type": ["integer", "null"] },
+        "total_tasks": { "type": ["integer", "null"] }
+      }
+    },
+    "sample": {
+      "type": "object",
+      "required": ["n_episodes", "n_frames", "max_episodes"],
+      "properties": {
+        "n_episodes": { "type": "integer", "minimum": 0 },
+        "n_frames": { "type": "integer", "minimum": 0 },
+        "max_episodes": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "scores": {
+      "type": "object",
+      "required": ["overall", "physical", "annotation", "integrity"],
+      "properties": {
+        "overall": { "type": ["number", "null"] },
+        "physical": { "type": ["number", "null"] },
+        "annotation": { "type": ["number", "null"] },
+        "integrity": { "type": ["number", "null"] }
+      }
+    },
+    "band": {
+      "type": "string",
+      "enum": ["clean", "review", "flagged", "unknown"]
+    },
+    "checks": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/check" }
+    },
+    "flagged_episodes": {
+      "type": "array",
+      "items": { "type": "integer" }
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "error": { "type": ["string", "null"] }
+  },
+  "$defs": {
+    "check": {
+      "type": "object",
+      "required": [
+        "id",
+        "category",
+        "status",
+        "score",
+        "summary",
+        "flagged_episodes",
+        "metrics"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "category": {
+          "type": "string",
+          "enum": ["physical", "annotation", "integrity"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pass", "fail", "skipped", "error"]
+        },
+        "score": { "type": ["number", "null"] },
+        "summary": { "type": "string" },
+        "flagged_episodes": {
+          "type": "array",
+          "items": { "type": "integer" }
+        },
+        "metrics": { "type": "object" }
+      }
+    }
+  }
+}
