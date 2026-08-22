@@ -1,0 +1,266 @@
+{
+  "schema_version": "0.1.0",
+  "dataset_id": "lerobot/droid_100",
+  "revision": "main",
+  "scored_at": "2026-08-22T22:41:59.398564+00:00",
+  "format": {
+    "detected": "v3.0",
+    "valid_lerobot": true,
+    "robot_type": "unknown",
+    "fps": 15,
+    "total_episodes": 100,
+    "total_frames": 32212,
+    "total_tasks": 47
+  },
+  "sample": {
+    "n_episodes": 10,
+    "n_frames": 2302,
+    "max_episodes": 10
+  },
+  "scores": {
+    "overall": 59.57,
+    "physical": 26.67,
+    "annotation": 85.71,
+    "integrity": 90.0
+  },
+  "band": "flagged",
+  "checks": [
+    {
+      "id": "velocity_spike",
+      "category": "physical",
+      "status": "fail",
+      "score": 20.0,
+      "summary": "8/10 episodes have velocity z > 3.5",
+      "flagged_episodes": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        7,
+        8,
+        9
+      ],
+      "metrics": {
+        "derived_velocity": true,
+        "threshold_z": 3.5
+      }
+    },
+    {
+      "id": "acceleration_spike",
+      "category": "physical",
+      "status": "fail",
+      "score": 20.0,
+      "summary": "8/10 episodes have acceleration z > 4.0",
+      "flagged_episodes": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        7,
+        8,
+        9
+      ],
+      "metrics": {
+        "threshold_z": 4.0
+      }
+    },
+    {
+      "id": "torque_saturation",
+      "category": "physical",
+      "status": "skipped",
+      "score": null,
+      "summary": "no torque/effort columns",
+      "flagged_episodes": [],
+      "metrics": {}
+    },
+    {
+      "id": "force_spike",
+      "category": "physical",
+      "status": "skipped",
+      "score": null,
+      "summary": "no force/wrench columns",
+      "flagged_episodes": [],
+      "metrics": {}
+    },
+    {
+      "id": "repeated_action",
+      "category": "physical",
+      "status": "fail",
+      "score": 40.0,
+      "summary": "6/10 episodes repeat an action for 8+ frames",
+      "flagged_episodes": [
+        0,
+        1,
+        4,
+        6,
+        7,
+        8
+      ],
+      "metrics": {
+        "run_threshold": 8,
+        "eps": 0.0001
+      }
+    },
+    {
+      "id": "empty_or_placeholder_task",
+      "category": "annotation",
+      "status": "fail",
+      "score": 0.0,
+      "summary": "47/47 task labels are empty or placeholders",
+      "flagged_episodes": [],
+      "metrics": {
+        "placeholders": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "n_tasks": 47
+      }
+    },
+    {
+      "id": "task_coverage",
+      "category": "annotation",
+      "status": "pass",
+      "score": 100,
+      "summary": "all task_index values resolve",
+      "flagged_episodes": [],
+      "metrics": {
+        "missing_task_index": [],
+        "n_task_rows": 47
+      }
+    },
+    {
+      "id": "task_specificity",
+      "category": "annotation",
+      "status": "skipped",
+      "score": null,
+      "summary": "no task text",
+      "flagged_episodes": [],
+      "metrics": {}
+    },
+    {
+      "id": "required_lerobot_fields",
+      "category": "annotation",
+      "status": "pass",
+      "score": 100,
+      "summary": "LeRobot schema looks complete",
+      "flagged_episodes": [],
+      "metrics": {
+        "missing_info_keys": [],
+        "missing_columns": [],
+        "n_features": 12
+      }
+    },
+    {
+      "id": "fps_consistency",
+      "category": "annotation",
+      "status": "pass",
+      "score": 100.0,
+      "summary": "0/10 episodes disagree with declared fps=15",
+      "flagged_episodes": [],
+      "metrics": {
+        "declared_fps": 15
+      }
+    },
+    {
+      "id": "timestamp_monotonic",
+      "category": "annotation",
+      "status": "pass",
+      "score": 100.0,
+      "summary": "0/10 episodes have non-increasing timestamps",
+      "flagged_episodes": [],
+      "metrics": {}
+    },
+    {
+      "id": "episode_length_anomaly",
+      "category": "annotation",
+      "status": "pass",
+      "score": 100.0,
+      "summary": "0/10 episodes are empty, single-frame, or extreme outliers",
+      "flagged_episodes": [],
+      "metrics": {
+        "median_length": 193.0,
+        "min": 87,
+        "max": 596
+      }
+    },
+    {
+      "id": "declared_video_missing",
+      "category": "annotation",
+      "status": "pass",
+      "score": 100,
+      "summary": "video shards present",
+      "flagged_episodes": [],
+      "metrics": {
+        "n_video_features": 3,
+        "n_mp4": 3,
+        "video_keys": [
+          "observation.images.exterior_image_1_left",
+          "observation.images.exterior_image_2_left",
+          "observation.images.wrist_image_left"
+        ]
+      }
+    },
+    {
+      "id": "nan_inf",
+      "category": "integrity",
+      "status": "pass",
+      "score": 100.0,
+      "summary": "0/10 episodes contain NaN or Inf",
+      "flagged_episodes": [],
+      "metrics": {
+        "columns_checked": [
+          "observation.state",
+          "action"
+        ]
+      }
+    },
+    {
+      "id": "constant_sequence",
+      "category": "integrity",
+      "status": "pass",
+      "score": 80.0,
+      "summary": "2/10 episodes freeze a normally-variable state channel",
+      "flagged_episodes": [
+        3,
+        6
+      ],
+      "metrics": {}
+    }
+  ],
+  "flagged_episodes": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "warnings": [
+    "velocity_spike used finite-differenced state"
+  ],
+  "error": null
+}
